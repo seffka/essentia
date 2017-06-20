@@ -73,8 +73,9 @@ void ChordsDetectionBeats::compute() {
       frameEnd = frameStart + 1;
 
     if (frameEnd > (int)hpcp.size()-1) break;
-    vector<Real> hpcpMedian = medianFrames(hpcp, frameStart, frameEnd);
-    normalize(hpcpMedian);
+    vector<Real> hpcpMedian = hpcp[frameStart];//(hpcp, frameStart, frameEnd);
+    // normalization doesn't matter because of cosine distance.
+    // normalize(hpcpMedian);
 
     _chordsAlgo->input("pcp").set(hpcpMedian);
     _chordsAlgo->output("key").set(key);
